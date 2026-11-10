@@ -35,14 +35,7 @@ export function Nav() {
         borderBottom: '1px solid var(--line,rgba(255,255,255,0.06))',
       }}>
         {/* Logo */}
-        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', color: 'var(--text,#ece8f0)' }}>
-          <span style={{
-            width: 30, height: 30, borderRadius: 9, flexShrink: 0,
-            border: '1px solid var(--line,rgba(255,255,255,0.12))',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: 13,
-            color: 'var(--accent,#ae42a5)',
-          }}>M</span>
+        <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'var(--text,#ece8f0)' }}>
           <span style={{ fontFamily: "'Space Grotesk',sans-serif", fontWeight: 600, letterSpacing: '-0.01em', fontSize: 15 }}>
             Maame Yaa <span style={{ color: 'var(--accent,#ae42a5)' }}>Twumasi</span>
           </span>
@@ -56,10 +49,10 @@ export function Nav() {
                 const active = pathname === n.href
                 return (
                   <Link key={n.href} href={n.href} style={{
-                    textDecoration: 'none', fontSize: 14, fontWeight: 500,
-                    padding: '8px 13px', borderRadius: 9, transition: 'color .2s,background .2s',
+                    textDecoration: 'none', fontSize: 14,
+                    fontWeight: active ? 700 : 500,
+                    padding: '8px 13px', borderRadius: 9, transition: 'color .2s',
                     color: active ? 'var(--text,#ece8f0)' : 'var(--dim,#9a93a8)',
-                    background: active ? 'var(--panel,rgba(255,255,255,0.05))' : 'transparent',
                   }}>{n.label}</Link>
                 )
               })}

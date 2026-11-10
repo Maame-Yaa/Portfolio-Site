@@ -84,7 +84,7 @@ input::placeholder, textarea::placeholder { color: var(--dim, #9a93a8); opacity:
 .device.phone .device-lid::after { content: ''; position: absolute; bottom: 7px; left: 50%; transform: translateX(-50%); width: 118px; height: 5px; border-radius: 3px; background: rgba(255,255,255,0.5); z-index: 8; }
 
 /* ===== HOVER UTILITIES ===== */
-.panel-card { transition: border-color .25s; }
+.panel-card { transition: border-color .25s, box-shadow .25s; box-shadow: 0 2px 8px rgba(0,0,0,0.22); }
 .panel-card:hover { border-color: var(--accent) !important; }
 .btn-primary { transition: transform .2s; }
 .btn-primary:hover { transform: translateY(-2px); }

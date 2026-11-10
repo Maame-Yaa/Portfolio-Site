@@ -10,8 +10,9 @@ function parseDotCommon(): React.CSSProperties {
 
 function leafImg(lf: { kind: string; url: string }, theme: string) {
   if (lf.kind === 'repo') return { src: `https://cdn.simpleicons.org/github/${theme === 'light' ? '2a2540' : 'e8e8ef'}`, bg: 'var(--panel2)', size: '24px', fit: 'contain' as const }
-  if (/electrohouse/i.test(lf.url)) return { src: '/assets/electrohouse.png', bg: '#2b2433', size: '100%', fit: 'cover' as const }
-  if (/vannar/i.test(lf.url))       return { src: '/assets/vannar.png',       bg: '#ffffff',  size: '86%', fit: 'contain' as const }
+  if (/electrohouse/i.test(lf.url))      return { src: '/assets/electrohouse.png',    bg: '#2b2433', size: '100%', fit: 'cover' as const }
+  if (/vannar/i.test(lf.url))            return { src: '/assets/vannar.png',           bg: '#ffffff',  size: '86%', fit: 'contain' as const }
+  if (/collectvirginia/i.test(lf.url))   return { src: '/assets/collect-virginia.jpg', bg: '#ffffff',  size: '86%', fit: 'contain' as const }
   return null
 }
 
@@ -120,7 +121,7 @@ export function WorkClient() {
                   <div key={i} style={{ position: 'relative', display: 'flex', justifyContent: justify as 'flex-start' | 'flex-end' }}>
                     <span style={dotStyle} />
                     <div style={{ width: colW }}>
-                      <div className="panel-card" style={{ position: 'relative', border: '1px solid var(--line,rgba(255,255,255,0.1))', borderRadius: 16, background: 'var(--panel,rgba(255,255,255,0.02))', padding: '20px 22px', transition: 'all .25s' }}>
+                      <div className="panel-card" style={{ position: 'relative', border: '1px solid var(--line,rgba(255,255,255,0.1))', borderRadius: 8, background: 'var(--panel,rgba(255,255,255,0.02))', padding: '20px 22px', transition: 'all .25s' }}>
                         <span style={connStyle} />
                         <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', gap: '8px 12px', marginBottom: 4 }}>
                           <h3 style={{ margin: 0, fontFamily: "'Space Grotesk',sans-serif", fontWeight: 700, fontSize: '1.24rem', letterSpacing: '-0.01em', color: 'var(--text,#ece8f0)' }}>{e.role}</h3>
@@ -343,10 +344,10 @@ export function WorkClient() {
 
         {/* CTA */}
         <section style={{ padding: '40px 0 110px', display: 'flex', flexWrap: 'wrap', gap: 14, alignItems: 'center' }}>
-          <Link href="/contact" className="btn-primary" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 9, padding: '15px 28px', borderRadius: 12, fontFamily: "'Space Grotesk',sans-serif", fontWeight: 700, fontSize: 15, background: 'var(--accent,#ae42a5)', color: 'var(--on-accent,#0b0710)', boxShadow: '0 14px 40px -14px var(--accent,#ae42a5)' }}>
+          <Link href="/contact" className="btn-primary" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 9, padding: '15px 28px', borderRadius: 8, fontFamily: "'Space Grotesk',sans-serif", fontWeight: 700, fontSize: 15, background: 'var(--accent,#ae42a5)', color: 'var(--on-accent,#0b0710)', boxShadow: '0 14px 40px -14px var(--accent,#ae42a5)' }}>
             Let&apos;s build something →
           </Link>
-          <a href="/assets/Maame-Yaa-Twumasi-Resume.pdf" download="Maame Yaa Twumasi Resume.pdf" className="btn-outline" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 9, padding: '15px 28px', borderRadius: 12, fontFamily: "'Space Grotesk',sans-serif", fontWeight: 600, fontSize: 15, color: 'var(--text,#ece8f0)', border: '1px solid var(--line,rgba(255,255,255,0.16))' }}>
+          <a href="/assets/Maame-Yaa-Twumasi-Resume.pdf" download="Maame Yaa Twumasi Resume.pdf" className="btn-outline" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 9, padding: '15px 28px', borderRadius: 8, fontFamily: "'Space Grotesk',sans-serif", fontWeight: 600, fontSize: 15, color: 'var(--text,#ece8f0)', border: '1px solid var(--line,rgba(255,255,255,0.16))' }}>
             Download Resume
           </a>
         </section>

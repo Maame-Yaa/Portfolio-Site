@@ -14,7 +14,6 @@ export const SOCIALS = [
 ]
 
 export const STATS = [
-  { num: '3+', label: 'Years experience' },
   { num: 'AWS', label: 'Certified Cloud Practitioner' },
   { num: 'B.Sc', label: 'Computer Engineering' },
   { num: 'VA', label: 'Based in Virginia' },
@@ -61,6 +60,18 @@ export const SKILL_LOCAL: Record<string, { url: (theme: string) => string; tile?
 export const SKILL_MONO = ['nextdotjs', 'express', 'prisma', 'github']
 
 export const EXPERIENCE = [
+  {
+    role: 'Technical Operations Specialist',
+    tag: 'Full Stack',
+    company: 'Collect Virginia LLC',
+    loc: 'Richmond, VA',
+    cur: true,
+    blurb: 'Built a 53-field grant intake form in Next.js with TypeScript and Tailwind CSS, replacing phone and in-person intake for nonprofits. Added Zod validation on both client and server, IP rate limiting, reCAPTCHA v2 after a bot attack, and routed submissions to email and a Google Sheets record via Apps Script. Also built a case studies section for the agency site with a listing page and reusable detail template.',
+    chips: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Zod', 'Google Apps Script', 'reCAPTCHA'],
+    leaves: [
+      { kind: 'site' as const, label: 'collectvirginia.com', url: 'https://collectvirginia.com' },
+    ],
+  },
   {
     role: 'Software Engineer',
     tag: 'Full Stack · Backend-Leaning',
@@ -253,7 +264,14 @@ export const WORK_PROJECTS = [
   },
 ]
 
-export const JOURNEY = ['HTML / CSS', 'JavaScript', 'Bootstrap', 'MERN stack', 'Python', 'Docker', 'Git & CI/CD']
+export const JOURNEY = [
+  { label: 'Started with',      stack: 'HTML, CSS, JavaScript' },
+  { label: 'Camara',            stack: 'WordPress, WooCommerce' },
+  { label: 'Elopement Tracker', stack: 'React, Node, Express, MySQL' },
+  { label: 'Aortem',            stack: 'Vue 3, Nuxt 3, GitLab CI/CD' },
+  { label: 'Cher',              stack: 'Python, FastAPI, PostgreSQL, Docker' },
+  { label: 'Collect',           stack: 'Next.js, TypeScript, shipped to production' },
+]
 
 export const CONTACTS = [
   { label: 'email', value: 'maameyaamtwumasi@gmail.com', arrow: '→', url: 'mailto:maameyaamtwumasi@gmail.com', target: '_self' },

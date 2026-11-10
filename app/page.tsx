@@ -4,30 +4,8 @@ import Link from 'next/link'
 import { useTheme } from '@/components/ThemeProvider'
 import {
   ACCENT, SOCIALS, STATS, SKILLS, SKILL_ABBR, SKILL_SLUGS, SKILL_LOCAL, SKILL_MONO,
-  HOME_PROJECTS, EXPERIENCE, TYPEWRITER_PHRASES,
+  HOME_PROJECTS, EXPERIENCE,
 } from '@/lib/data'
-
-// ─── Typewriter ───────────────────────────────────────────────────────────────
-function useTypewriter(phrases: string[]) {
-  const [text, setText] = useState('')
-  const iRef = useRef(0); const cRef = useRef(0); const delRef = useRef(false)
-  const ttRef = useRef<ReturnType<typeof setTimeout> | null>(null)
-  useEffect(() => {
-    const tick = () => {
-      const full = phrases[iRef.current % phrases.length]
-      if (delRef.current) cRef.current--; else cRef.current++
-      setText(full.slice(0, cRef.current))
-      let delay = delRef.current ? 38 : 80
-      if (!delRef.current && cRef.current === full.length) { delRef.current = true; delay = 1500 }
-      else if (delRef.current && cRef.current === 0) { delRef.current = false; iRef.current++; delay = 380 }
-      ttRef.current = setTimeout(tick, delay)
-    }
-    ttRef.current = setTimeout(tick, 400)
-    return () => { if (ttRef.current) clearTimeout(ttRef.current) }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-  return text
-}
 
 // ─── Terminal ─────────────────────────────────────────────────────────────────
 type TermLine = { text: string; color: string }
@@ -90,7 +68,7 @@ function ExpTree({ narrow, theme }: { narrow: boolean; theme: string }) {
             <div key={i} style={{ position: 'relative', display: 'flex', justifyContent: justify as 'flex-start' | 'flex-end' }}>
               <span style={dotStyle} />
               <div style={{ width: colW }}>
-                <div style={{ position: 'relative', border: '1px solid var(--line,rgba(255,255,255,0.1))', borderRadius: 16, background: 'var(--panel,rgba(255,255,255,0.02))', padding: '20px 22px', transition: 'all .25s' }}>
+                <div className="panel-card" style={{ position: 'relative', border: '1px solid var(--line,rgba(255,255,255,0.1))', borderRadius: 8, background: 'var(--panel,rgba(255,255,255,0.02))', padding: '20px 22px', transition: 'all .25s' }}>
                   <span style={connStyle} />
                   <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', gap: '8px 12px', marginBottom: 4 }}>
                     <h3 style={{ margin: 0, fontFamily: "'Space Grotesk',sans-serif", fontWeight: 700, fontSize: '1.24rem', letterSpacing: '-0.01em', color: 'var(--text,#ece8f0)' }}>{e.role}</h3>
@@ -138,7 +116,6 @@ function parseDotCommon(): React.CSSProperties {
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export default function HomePage() {
   const { theme } = useTheme()
-  const tw = useTypewriter(TYPEWRITER_PHRASES)
 
   // Skills tab
   const [skillTab, setSkillTab] = useState('All')
@@ -199,17 +176,13 @@ export default function HomePage() {
               <span style={{ display: 'block', color: 'var(--text,#ece8f0)' }}>Maame Yaa</span>
               <span style={{ display: 'block', background: `linear-gradient(115deg,${accent},var(--accent-strong,#d7a1d2))`, WebkitBackgroundClip: 'text', backgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Twumasi</span>
             </h1>
-            <div style={{ fontFamily: "'Space Grotesk',sans-serif", fontSize: 'clamp(1.05rem,2.4vw,1.6rem)', fontWeight: 500 }}>
-              <span style={{ color: 'var(--text,#ece8f0)' }}>{tw}</span>
-              <span style={{ display: 'inline-block', width: 3, height: '1.05em', background: accent, marginLeft: 3, transform: 'translateY(3px)', animation: 'blink 1s steps(1) infinite' }} />
-            </div>
             <p style={{ maxWidth: 520, margin: 0, fontSize: 'clamp(1rem,2vw,1.1rem)', lineHeight: 1.65, color: 'var(--dim,#9a93a8)' }}>
               I design databases, ship APIs, and build typed frontends. Full-stack, currently backend leaning. Building ServiceOps now; based in Virginia and AWS Certified.
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 11, marginTop: 4 }}>
-              <a href="#projects" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8, padding: '14px 24px', borderRadius: 12, fontFamily: "'Space Grotesk',sans-serif", fontWeight: 700, fontSize: 15, background: accent, color: onAcc, boxShadow: `0 14px 40px -14px ${accent}`, transition: 'transform .2s' }}>View Projects →</a>
-              <a href="/assets/Maame-Yaa-Twumasi-Resume.pdf" download="Maame Yaa Twumasi Resume.pdf" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8, padding: '14px 24px', borderRadius: 12, fontFamily: "'Space Grotesk',sans-serif", fontWeight: 600, fontSize: 15, color: 'var(--text,#ece8f0)', border: '1px solid var(--line,rgba(255,255,255,0.14))', transition: 'border-color .2s' }}>Download Resume</a>
-              <a href="#contact" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8, padding: '14px 24px', borderRadius: 12, fontFamily: "'Space Grotesk',sans-serif", fontWeight: 600, fontSize: 15, color: 'var(--text,#ece8f0)', border: '1px solid var(--line,rgba(255,255,255,0.14))', transition: 'border-color .2s' }}>Get in Touch</a>
+              <a href="#projects" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8, padding: '14px 24px', borderRadius: 8, fontFamily: "'Space Grotesk',sans-serif", fontWeight: 700, fontSize: 15, background: accent, color: onAcc, boxShadow: `0 14px 40px -14px ${accent}`, transition: 'transform .2s' }}>View Projects →</a>
+              <a href="/assets/Maame-Yaa-Twumasi-Resume.pdf" download="Maame Yaa Twumasi Resume.pdf" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8, padding: '14px 24px', borderRadius: 8, fontFamily: "'Space Grotesk',sans-serif", fontWeight: 600, fontSize: 15, color: 'var(--text,#ece8f0)', border: '1px solid var(--line,rgba(255,255,255,0.14))', transition: 'border-color .2s' }}>Download Resume</a>
+              <a href="#contact" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8, padding: '14px 24px', borderRadius: 8, fontFamily: "'Space Grotesk',sans-serif", fontWeight: 600, fontSize: 15, color: 'var(--text,#ece8f0)', border: '1px solid var(--line,rgba(255,255,255,0.14))', transition: 'border-color .2s' }}>Get in Touch</a>
             </div>
             <div style={{ display: 'flex', gap: 10, marginTop: 2 }}>
               {SOCIALS.map(s => (
@@ -279,7 +252,7 @@ export default function HomePage() {
               const li = skillLogo(name, theme)
               const abbr = SKILL_ABBR[name] || name.slice(0, 2)
               return (
-                <div key={name} style={{ display: 'flex', alignItems: 'center', gap: 11, padding: '13px 15px', borderRadius: 13, background: 'transparent', border: '1px solid var(--line,rgba(255,255,255,0.09))', transition: 'all .2s' }}>
+                <div key={name} style={{ display: 'flex', alignItems: 'center', gap: 11, padding: '13px 15px', borderRadius: 6, background: 'transparent', border: '1px solid var(--line,rgba(255,255,255,0.09))', transition: 'all .2s' }}>
                   <span style={{ flexShrink: 0, width: 34, height: 34, borderRadius: li?.tile ? '50%' : 9, background: li?.tile ? '#ffffff' : 'var(--panel2,rgba(255,255,255,0.06))', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
                     {li
                       ? <img src={li.url} alt={name} loading="lazy" style={{ width: li.size, height: li.size, objectFit: 'contain', display: 'block' }} onError={e => { (e.target as HTMLImageElement).style.display = 'none'; const fb = (e.target as HTMLImageElement).parentElement?.querySelector('[data-fb]') as HTMLElement | null; if (fb) fb.style.display = 'flex' }} />
@@ -308,7 +281,7 @@ export default function HomePage() {
               const tagBg = p.soon ? (theme === 'light' ? 'rgba(109,74,255,0.12)' : 'rgba(157,123,255,0.16)') : 'var(--panel2)'
               const tagFg = p.soon ? accent : dimC
               return (
-                <div key={p.name} style={{ display: 'flex', flexDirection: 'column', borderRadius: 18, border: '1px solid var(--line,rgba(255,255,255,0.1))', background: 'var(--panel,rgba(255,255,255,0.02))', overflow: 'hidden', transition: 'all .25s' }}>
+                <div key={p.name} className="panel-card" style={{ display: 'flex', flexDirection: 'column', borderRadius: 8, border: '1px solid var(--line,rgba(255,255,255,0.1))', background: 'var(--panel,rgba(255,255,255,0.02))', overflow: 'hidden', transition: 'all .25s' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 7, padding: '11px 14px', borderBottom: '1px solid var(--line,rgba(255,255,255,0.08))' }}>
                     <span style={{ width: 9, height: 9, borderRadius: '50%', background: 'var(--line,rgba(255,255,255,0.25))' }} /><span style={{ width: 9, height: 9, borderRadius: '50%', background: 'var(--line,rgba(255,255,255,0.25))' }} /><span style={{ width: 9, height: 9, borderRadius: '50%', background: accent }} />
                     <span style={{ marginLeft: 8, fontFamily: "'JetBrains Mono',monospace", fontSize: 11, color: 'var(--dim,#9a93a8)' }}>{p.name}</span>
@@ -335,18 +308,18 @@ export default function HomePage() {
               )
             })}
           </div>
-          <Link href="/work" style={{ marginTop: 34, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 9, padding: '14px 26px', borderRadius: 12, fontFamily: "'Space Grotesk',sans-serif", fontWeight: 700, fontSize: 15, color: 'var(--text,#ece8f0)', border: '1px solid var(--line,rgba(255,255,255,0.16))', transition: 'all .2s' }}>See all work &amp; case studies →</Link>
+          <Link href="/work" style={{ marginTop: 34, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 9, padding: '14px 26px', borderRadius: 8, fontFamily: "'Space Grotesk',sans-serif", fontWeight: 700, fontSize: 15, color: 'var(--text,#ece8f0)', border: '1px solid var(--line,rgba(255,255,255,0.16))', transition: 'all .2s' }}>See all work &amp; case studies →</Link>
         </section>
 
         {/* ── CONTACT CTA ── */}
         <section id="contact" style={{ padding: '80px clamp(20px,5vw,56px) 60px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-          <div style={{ width: '100%', maxWidth: 880, borderRadius: 26, border: '1px solid var(--line,rgba(255,255,255,0.1))', background: 'var(--panel,rgba(255,255,255,0.02))', padding: 'clamp(30px,6vw,60px)', position: 'relative', overflow: 'hidden' }}>
+          <div className="panel-card" style={{ width: '100%', maxWidth: 880, borderRadius: 8, border: '1px solid var(--line,rgba(255,255,255,0.1))', background: 'var(--panel,rgba(255,255,255,0.02))', padding: 'clamp(30px,6vw,60px)', position: 'relative', overflow: 'hidden' }}>
             <div style={{ position: 'absolute', top: '-40%', right: '-10%', width: '50%', height: '140%', background: `radial-gradient(circle,${accent} 0%,transparent 65%)`, opacity: 0.16, filter: 'blur(20px)', pointerEvents: 'none' }} />
             <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, letterSpacing: '0.25em', color: accent, marginBottom: 16, position: 'relative' }}>05 / GET IN TOUCH</div>
             <h2 style={{ margin: '0 0 28px', fontFamily: "'Space Grotesk',sans-serif", fontWeight: 700, letterSpacing: '-0.03em', fontSize: 'clamp(2.1rem,6vw,3.8rem)', color: 'var(--text,#ece8f0)', position: 'relative' }}>Let&apos;s build something.</h2>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 13, justifyContent: 'flex-start', position: 'relative' }}>
-              <Link href="/contact" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 9, padding: '15px 28px', borderRadius: 999, fontFamily: "'Space Grotesk',sans-serif", fontWeight: 700, fontSize: 15, background: accent, color: onAcc, boxShadow: `0 14px 40px -12px ${accent}`, transition: 'transform .2s' }}>Email me →</Link>
-              <a href="/assets/Maame-Yaa-Twumasi-Resume.pdf" download="Maame Yaa Twumasi Resume.pdf" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 9, padding: '15px 28px', borderRadius: 999, fontFamily: "'Space Grotesk',sans-serif", fontWeight: 600, fontSize: 15, color: 'var(--text,#ece8f0)', border: '1px solid var(--line,rgba(255,255,255,0.16))', transition: 'border-color .2s' }}>Download Resume</a>
+              <Link href="/contact" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 9, padding: '15px 28px', borderRadius: 8, fontFamily: "'Space Grotesk',sans-serif", fontWeight: 700, fontSize: 15, background: accent, color: onAcc, boxShadow: `0 14px 40px -12px ${accent}`, transition: 'transform .2s' }}>Email me →</Link>
+              <a href="/assets/Maame-Yaa-Twumasi-Resume.pdf" download="Maame Yaa Twumasi Resume.pdf" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 9, padding: '15px 28px', borderRadius: 8, fontFamily: "'Space Grotesk',sans-serif", fontWeight: 600, fontSize: 15, color: 'var(--text,#ece8f0)', border: '1px solid var(--line,rgba(255,255,255,0.16))', transition: 'border-color .2s' }}>Download Resume</a>
             </div>
           </div>
 

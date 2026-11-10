@@ -33,7 +33,6 @@ export function FluidCanvas() {
 
     const parts: Particle[] = []
     const MAX = 170
-    const ptr = { x: W / 2, y: H / 2, px: W / 2, py: H / 2 }
 
     const spawn = (x: number, y: number, vx: number, vy: number, n: number, big?: boolean) => {
       for (let i = 0; i < n; i++) {
@@ -49,18 +48,8 @@ export function FluidCanvas() {
       }
     }
 
-    const onMove = (e: MouseEvent | TouchEvent) => {
-      const t = 'touches' in e ? e.touches[0] : e
-      ptr.px = ptr.x; ptr.py = ptr.y
-      ptr.x = t.clientX; ptr.y = t.clientY
-      const vx = ptr.x - ptr.px, vy = ptr.y - ptr.py
-      spawn(ptr.x, ptr.y, vx, vy, 1 + Math.floor(Math.min(Math.hypot(vx, vy), 60) / 13))
-    }
-
     const onResize = () => resize()
-    window.addEventListener('mousemove',  onMove)
-    window.addEventListener('touchmove',  onMove as EventListener, { passive: true })
-    window.addEventListener('resize',     onResize)
+    window.addEventListener('resize', onResize)
 
     let raf: number
     const loop = () => {
@@ -73,7 +62,7 @@ export function FluidCanvas() {
       ctx.fillStyle = th === 'dark' ? 'rgba(11,7,16,0.085)' : 'rgba(241,237,247,0.075)'
       ctx.fillRect(0, 0, W, H)
       ctx.globalCompositeOperation = th === 'dark' ? 'lighter' : 'multiply'
-      const baseA = th === 'dark' ? 0.022 : 0.05
+      const baseA = th === 'dark' ? 0.010 : 0.022
 
       for (let i = parts.length - 1; i >= 0; i--) {
         const p = parts[i]
@@ -94,9 +83,7 @@ export function FluidCanvas() {
 
     return () => {
       cancelAnimationFrame(raf)
-      window.removeEventListener('mousemove', onMove)
-      window.removeEventListener('touchmove', onMove as EventListener)
-      window.removeEventListener('resize',    onResize)
+      window.removeEventListener('resize', onResize)
     }
   }, [])
 

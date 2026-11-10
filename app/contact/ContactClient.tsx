@@ -83,32 +83,32 @@ export function ContactClient() {
             </div>
 
             {/* RIGHT: form */}
-            <div className="panel-card" style={{ position: 'relative', border: '1px solid var(--line,rgba(255,255,255,0.1))', borderRadius: 20, background: 'var(--panel,rgba(255,255,255,0.02))', padding: 'clamp(24px,4vw,34px)' }}>
+            <div className="panel-card" style={{ position: 'relative', border: '1px solid var(--line,rgba(255,255,255,0.1))', borderRadius: 8, background: 'var(--panel,rgba(255,255,255,0.02))', padding: 'clamp(24px,4vw,34px)' }}>
               {!sent ? (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
                   <label style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
                     <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: '0.1em', color: 'var(--dim,#9a93a8)' }}>NAME</span>
-                    <input ref={nameRef} type="text" placeholder="Your name" style={{ fontFamily: "'Manrope',sans-serif", fontSize: 15, padding: '13px 15px', borderRadius: 11, border: '1px solid var(--line,rgba(255,255,255,0.14))', background: 'var(--bg2,rgba(0,0,0,0.2))', color: 'var(--text,#ece8f0)', outline: 'none', transition: 'border-color .2s', width: '100%', boxSizing: 'border-box' }}
+                    <input ref={nameRef} type="text" placeholder="Your name" style={{ fontFamily: "'Manrope',sans-serif", fontSize: 15, padding: '13px 15px', borderRadius: 6, border: '1px solid var(--line,rgba(255,255,255,0.14))', background: 'var(--bg2,rgba(0,0,0,0.2))', color: 'var(--text,#ece8f0)', outline: 'none', transition: 'border-color .2s', width: '100%', boxSizing: 'border-box' }}
                       onFocus={e => e.target.style.borderColor = 'var(--accent,#ae42a5)'}
                       onBlur={e => e.target.style.borderColor = 'var(--line,rgba(255,255,255,0.14))'}
                     />
                   </label>
                   <label style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
                     <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: '0.1em', color: 'var(--dim,#9a93a8)' }}>EMAIL</span>
-                    <input ref={emailRef} type="email" placeholder="you@example.com" style={{ fontFamily: "'Manrope',sans-serif", fontSize: 15, padding: '13px 15px', borderRadius: 11, border: '1px solid var(--line,rgba(255,255,255,0.14))', background: 'var(--bg2,rgba(0,0,0,0.2))', color: 'var(--text,#ece8f0)', outline: 'none', transition: 'border-color .2s', width: '100%', boxSizing: 'border-box' }}
+                    <input ref={emailRef} type="email" placeholder="you@example.com" style={{ fontFamily: "'Manrope',sans-serif", fontSize: 15, padding: '13px 15px', borderRadius: 6, border: '1px solid var(--line,rgba(255,255,255,0.14))', background: 'var(--bg2,rgba(0,0,0,0.2))', color: 'var(--text,#ece8f0)', outline: 'none', transition: 'border-color .2s', width: '100%', boxSizing: 'border-box' }}
                       onFocus={e => e.target.style.borderColor = 'var(--accent,#ae42a5)'}
                       onBlur={e => e.target.style.borderColor = 'var(--line,rgba(255,255,255,0.14))'}
                     />
                   </label>
                   <label style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
                     <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: '0.1em', color: 'var(--dim,#9a93a8)' }}>MESSAGE</span>
-                    <textarea ref={msgRef} rows={4} placeholder="What are you building?" style={{ fontFamily: "'Manrope',sans-serif", fontSize: 15, padding: '13px 15px', borderRadius: 11, border: '1px solid var(--line,rgba(255,255,255,0.14))', background: 'var(--bg2,rgba(0,0,0,0.2))', color: 'var(--text,#ece8f0)', outline: 'none', resize: 'vertical', transition: 'border-color .2s', width: '100%', boxSizing: 'border-box' }}
+                    <textarea ref={msgRef} rows={4} placeholder="What are you building?" style={{ fontFamily: "'Manrope',sans-serif", fontSize: 15, padding: '13px 15px', borderRadius: 6, border: '1px solid var(--line,rgba(255,255,255,0.14))', background: 'var(--bg2,rgba(0,0,0,0.2))', color: 'var(--text,#ece8f0)', outline: 'none', resize: 'vertical', transition: 'border-color .2s', width: '100%', boxSizing: 'border-box' }}
                       onFocus={e => e.target.style.borderColor = 'var(--accent,#ae42a5)'}
                       onBlur={e => e.target.style.borderColor = 'var(--line,rgba(255,255,255,0.14))'}
                     />
                   </label>
                   {err && <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, color: '#ff7a7a' }}>{err}</span>}
-                  <button onClick={send} disabled={loading} className="btn-primary" style={{ marginTop: 4, border: 0, padding: '15px 20px', borderRadius: 12, fontFamily: "'Space Grotesk',sans-serif", fontWeight: 700, fontSize: 15, background: 'var(--accent,#ae42a5)', color: 'var(--on-accent,#0b0710)', boxShadow: '0 14px 40px -16px var(--accent,#ae42a5)', cursor: loading ? 'wait' : 'pointer', opacity: loading ? 0.7 : 1, width: '100%' }}>
+                  <button onClick={send} disabled={loading} className="btn-primary" style={{ marginTop: 4, border: 0, padding: '15px 20px', borderRadius: 8, fontFamily: "'Space Grotesk',sans-serif", fontWeight: 700, fontSize: 15, background: 'var(--accent,#ae42a5)', color: 'var(--on-accent,#0b0710)', boxShadow: '0 14px 40px -16px var(--accent,#ae42a5)', cursor: loading ? 'wait' : 'pointer', opacity: loading ? 0.7 : 1, width: '100%' }}>
                     {loading ? 'Sending…' : 'Send message →'}
                   </button>
                   <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 10.5, color: 'var(--dim,#9a93a8)', lineHeight: 1.5, opacity: 0.8 }}>I&apos;ll get back to you as soon as possible.</span>
@@ -118,7 +118,7 @@ export function ContactClient() {
                   <span style={{ width: 64, height: 64, borderRadius: '50%', background: 'rgba(31,138,91,0.16)', border: '1px solid #1f8a5b', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28, color: '#1f8a5b' }}>✓</span>
                   <h3 style={{ margin: 0, fontFamily: "'Space Grotesk',sans-serif", fontWeight: 700, fontSize: '1.5rem', color: 'var(--text,#ece8f0)' }}>Thanks for reaching out</h3>
                   <p style={{ margin: 0, color: 'var(--dim,#9a93a8)', lineHeight: 1.6, maxWidth: 320 }}>Message sent! I&apos;ll get back to you soon. You can also email me directly at maameyaamtwumasi@gmail.com.</p>
-                  <button onClick={reset} className="btn-outline" style={{ border: '1px solid var(--line,rgba(255,255,255,0.16))', background: 'transparent', padding: '11px 20px', borderRadius: 11, fontFamily: "'Space Grotesk',sans-serif", fontWeight: 600, fontSize: 14, color: 'var(--text,#ece8f0)', cursor: 'pointer' }}>
+                  <button onClick={reset} className="btn-outline" style={{ border: '1px solid var(--line,rgba(255,255,255,0.16))', background: 'transparent', padding: '11px 20px', borderRadius: 6, fontFamily: "'Space Grotesk',sans-serif", fontWeight: 600, fontSize: 14, color: 'var(--text,#ece8f0)', cursor: 'pointer' }}>
                     Send another
                   </button>
                 </div>

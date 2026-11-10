@@ -68,7 +68,7 @@ export default function AboutPage() {
         <section style={{ padding: '30px 0 50px' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: 18 }}>
             {VALUE_CARDS.map(card => (
-              <div key={card.tag} className="panel-card" style={{ border: '1px solid var(--line,rgba(255,255,255,0.1))', borderRadius: 18, background: 'var(--panel,rgba(255,255,255,0.02))', padding: '26px 24px' }}>
+              <div key={card.tag} className="panel-card" style={{ border: '1px solid var(--line,rgba(255,255,255,0.1))', borderRadius: 8, background: 'var(--panel,rgba(255,255,255,0.02))', padding: '26px 24px' }}>
                 <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: '0.2em', color: 'var(--accent,#ae42a5)', marginBottom: 12 }}>{card.tag}</div>
                 <h3 style={{ margin: '0 0 10px', fontFamily: "'Space Grotesk',sans-serif", fontWeight: 700, fontSize: '1.3rem', color: 'var(--text,#ece8f0)' }}>{card.heading}</h3>
                 <p style={{ margin: 0, color: 'var(--dim,#9a93a8)', lineHeight: 1.66, fontSize: '0.98rem' }}>{card.body}</p>
@@ -81,24 +81,22 @@ export default function AboutPage() {
         <section style={{ padding: '40px 0' }}>
           <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, letterSpacing: '0.25em', color: 'var(--dim,#9a93a8)' }}>THE PATH SO FAR</span>
           <h2 style={{ margin: '10px 0 26px', fontFamily: "'Space Grotesk',sans-serif", fontWeight: 700, letterSpacing: '-0.03em', fontSize: 'clamp(1.8rem,4.5vw,2.8rem)', color: 'var(--text,#ece8f0)' }}>How I&apos;ve grown</h2>
-          <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 10 }}>
-            {JOURNEY.map((label, i) => (
-              <span key={label} style={{ display: 'contents' }}>
-                <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 13, padding: '9px 15px', borderRadius: 10, background: 'var(--panel2,rgba(255,255,255,0.05))', border: '1px solid var(--line,rgba(255,255,255,0.1))', color: 'var(--text,#ece8f0)' }}>{label}</span>
-                {i < JOURNEY.length - 1 && (
-                  <span style={{ color: 'var(--accent,#ae42a5)', fontSize: 14 }}>→</span>
-                )}
-              </span>
+          <ol style={{ listStyle: 'none', margin: 0, padding: 0, maxWidth: 720, borderTop: '1px solid var(--line,rgba(255,255,255,0.1))' }}>
+            {JOURNEY.map(row => (
+              <li key={row.label} style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', gap: '14px 18px', padding: '14px 0', borderBottom: '1px solid var(--line,rgba(255,255,255,0.1))' }}>
+                <span style={{ fontFamily: "'Space Grotesk',sans-serif", fontWeight: 600, fontSize: '1.05rem', color: 'var(--text,#ece8f0)', minWidth: 170 }}>{row.label}</span>
+                <span style={{ fontFamily: "'Manrope',sans-serif", fontSize: '0.98rem', color: 'var(--dim,#9a93a8)' }}>{row.stack}</span>
+              </li>
             ))}
-          </div>
+          </ol>
         </section>
 
         {/* CTA */}
         <section style={{ padding: '50px 0 110px', display: 'flex', flexWrap: 'wrap', gap: 14, alignItems: 'center' }}>
-          <Link href="/work" className="btn-primary" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 9, padding: '15px 28px', borderRadius: 12, fontFamily: "'Space Grotesk',sans-serif", fontWeight: 700, fontSize: 15, background: 'var(--accent,#ae42a5)', color: 'var(--on-accent,#0b0710)', boxShadow: '0 14px 40px -14px var(--accent,#ae42a5)' }}>
+          <Link href="/work" className="btn-primary" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 9, padding: '15px 28px', borderRadius: 8, fontFamily: "'Space Grotesk',sans-serif", fontWeight: 700, fontSize: 15, background: 'var(--accent,#ae42a5)', color: 'var(--on-accent,#0b0710)', boxShadow: '0 14px 40px -14px var(--accent,#ae42a5)' }}>
             See my work →
           </Link>
-          <Link href="/contact" className="btn-outline" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 9, padding: '15px 28px', borderRadius: 12, fontFamily: "'Space Grotesk',sans-serif", fontWeight: 600, fontSize: 15, color: 'var(--text,#ece8f0)', border: '1px solid var(--line,rgba(255,255,255,0.16))' }}>
+          <Link href="/contact" className="btn-outline" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 9, padding: '15px 28px', borderRadius: 8, fontFamily: "'Space Grotesk',sans-serif", fontWeight: 600, fontSize: 15, color: 'var(--text,#ece8f0)', border: '1px solid var(--line,rgba(255,255,255,0.16))' }}>
             Get in touch
           </Link>
         </section>
